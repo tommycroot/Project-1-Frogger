@@ -27,7 +27,8 @@ function init() {
   const height = 10
   const cellCount = width * height
   const finish = Math.floor(Math.random() * 10) // random position form 0 - 10
- 
+  const playAgain = document.querySelector('#playAgain')
+  playAgain.style.visibility = 'hidden'
    
   
   function createGrid(){
@@ -35,7 +36,7 @@ function init() {
     for(let i = 0; i < cellCount; i++){
   // Create div cell, add index as innerText, add Data attribute representing index.
       const cell = document.createElement('div')
-      cell.innerText = i
+      // cell.innerText = i
       cell.dataset.index = i
   // Append to grid and push cells into cells array.
       grid.appendChild(cell)
@@ -88,6 +89,7 @@ function init() {
     moveObstacles(300, 'patrick', 0, 70, -1)
     moveObstacles(500, 'squidward', 1, 59, 1)
     moveObstacles(3000, 'krab', 2, 39, 1)
+    startBtn.style.visibility = 'hidden'
     
   }
 
@@ -147,29 +149,42 @@ function init() {
   })
 }
  
-// A function to add a random cell from 0-10 as a goal for Bob to reach.
-function addFinish() {
-  cells[finish].classList.add('finish')
+  // A function to add a random cell from 0-10 as a goal for Bob to reach.
+  function addFinish() {
+    cells[finish].classList.add('finish')
 }
 
 
-// A fuunction to check if the 'finish' cell contains the Bob class.
-function checkFinish() {
-   if (cells[finish].classList.contains('bob')) {
-    return endGame()
+  // A fuunction to check if the 'finish' cell contains the Bob class.
+  function checkFinish() {
+    if (cells[finish].classList.contains('bob')) {
+    endGame()
+   } else if (lives === 0) {
+    endGame()
    }
   }
 
 
-// A basic function to check the end of the game.  
+  // A basic function to check the end of the game.  
   function endGame() {
+    grid.classList.remove('grid')
+    playAgain.style.visibility = 'visible'
+    livesDisplay.style.visibility = 'hidden'
     removeBob()
     addBob(startingPosition)
+    
   }
+  
+  // A basic function to reload the page
+  function restartGame() {
+    location.reload()
+  }
+
 
   // ! Events
   document.addEventListener('keydown', moveBob)
   startBtn.addEventListener('click', start)
+  playAgain.addEventListener('click', restartGame)
   
   
   // ! Page Load
@@ -178,3 +193,5 @@ function checkFinish() {
   }
   
   window.addEventListener('DOMContentLoaded', init)
+  
+  
