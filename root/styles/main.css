@@ -75,6 +75,19 @@
     background-size: contain;
   }
 
+  .grid div.wood {
+    background-image: url('../assets/Sprites/wood.jpg');
+    background-repeat: repeat;
+    background-size: contain;
+  }
+
+  .grid div.water {
+    background-image: url('../assets/Sprites/water.gif');
+    background-repeat: repeat;
+    background-size: contain;
+  }
+
+
   .grid div.finish {
     background-color: crimson;
   }
