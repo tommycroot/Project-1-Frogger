@@ -23,7 +23,7 @@
   
   .grid {
     background-image: url(../assets/Sprites/beach.jpg);
-    background-position: top;
+    background-position:inherit;
     align-items: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;

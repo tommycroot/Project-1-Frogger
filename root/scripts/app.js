@@ -9,6 +9,7 @@ function init() {
   let currentPosition = startingPosition
   const livesDisplay = document.querySelector('#lives-display')
   let lives = 3
+  let level = 2
 
   // Obstacle positions generated on the grid by being passed into addObstacles function.
   const obstacleCells = [
@@ -26,9 +27,6 @@ function init() {
     [12, 16, 18, 19],
     [20, 24, 28, 29]
   ]
-
- 
-        
     
   // Creating the grid
   const cells = []
@@ -37,6 +35,12 @@ function init() {
   const height = 10
   const cellCount = width * height
   const finish = Math.floor(Math.random() * 10) // random position form 0 - 10
+
+  // A function to add a random cell from 0-10 as a goal for Bob to reach.
+  function addFinish() {
+    cells[finish].classList.add('finish')
+  }
+  
   const playAgain = document.querySelector('#playAgain')
   playAgain.style.visibility = 'hidden'
    
@@ -211,12 +215,12 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
 }
 
 
-  function handleCollision() {
-    // Checking that each obstacle cell in the obstacle arrays doesn't contain the Bob class.
-    // If they do, remove Bob from the grid and start him at the starting position.
-    obstacleCells.forEach(row => {
-      row.forEach(obstacle => {
-        if (cells[obstacle].classList.contains('bob')) {
+function handleCollision() {
+  // Checking that each obstacle cell in the obstacle arrays doesn't contain the Bob class.
+  // If they do, remove Bob from the grid and start him at the starting position.
+  obstacleCells.forEach(row => {
+    row.forEach(obstacle => {
+      if (cells[obstacle].classList.contains('bob')) {
         removeBob()
         lives--
         livesDisplay.innerHTML = lives ? '❤️'.repeat(lives) : '💔'
@@ -239,20 +243,13 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
     }
   })
 })
-
-
 }
  
-  // A function to add a random cell from 0-10 as a goal for Bob to reach.
-  function addFinish() {
-    cells[finish].classList.add('finish')
-}
-
-
-  // A fuunction to check if the 'finish' cell contains the Bob class.
+  // A function to check if the 'finish' cell contains the Bob class.
   function checkFinish() {
     if (currentPosition === finish) {
     removeBob()
+    reset()
    } else if (lives === 0) {
     endGame()
    }
@@ -268,6 +265,12 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
     addBob(startingPosition)
   }
   
+  function reset() {
+    currentPosition = startingPosition
+    removeBob()
+    addBob(startingPosition)
+  }
+
   // A basic function to reload the page
   function restartGame() {
     location.reload()
@@ -275,7 +278,7 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
 
 
   // ! Events
-  document.addEventListener('keydown', moveBob)
+  document.addEventListener('keyup', moveBob)
   startBtn.addEventListener('click', start)
   playAgain.addEventListener('click', restartGame)
   
