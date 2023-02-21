@@ -6,6 +6,7 @@
     height: 100vh;
     margin: 0;
     background-image: url(../assets/Sprites/Bubble-background.webp);
+
   }
   
   #startBtn {
@@ -39,6 +40,14 @@
     flex-grow: 1;
     height: 10%;
     width: 10%;
+  }
+
+  .startLives {
+    display: flex;
+    justify-content: space-around;
+    width: 600px;
+    margin: 0px;
+    padding: 0px;
   }
   
   .grid div.bob {

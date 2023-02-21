@@ -7,6 +7,9 @@ function init() {
   const startBtn = document.querySelector('#startBtn')
   const startingPosition = 94
   let currentPosition = startingPosition
+  const livesDisplay = document.querySelector('#lives-display')
+  let lives = 3
+
   
 
   // Obstacle positions generated on the grid by being passed into addObstacles function.
@@ -23,6 +26,8 @@ function init() {
   const width = 10
   const height = 10
   const cellCount = width * height
+  const finish = Math.floor(Math.random() * 10) // random position form 0 - 10
+ 
    
   
   function createGrid(){
@@ -71,15 +76,19 @@ function init() {
       } else {
       }
     addBob(currentPosition)
+    checkFinish()
     }
   
   // Large function to start the game. 
   function start() {
+    checkFinish()
     addBob(startingPosition)
+    addFinish()
     handleCollision()
     moveObstacles(300, 'patrick', 0, 70, -1)
     moveObstacles(500, 'squidward', 1, 59, 1)
     moveObstacles(3000, 'krab', 2, 39, 1)
+    
   }
 
   // A function to add obstacles (sprite classes) onto the grid.
@@ -128,6 +137,8 @@ function init() {
     obstacleCells.forEach(row => {
       row.forEach(obstacle => {
         if (cells[obstacle].classList.contains('bob')) {
+        lives--
+        livesDisplay.innerHTML = lives ? '❤️'.repeat(lives) : '💔'
         removeBob()
         currentPosition = startingPosition
         addBob(startingPosition)
@@ -135,7 +146,27 @@ function init() {
     })
   })
 }
-    
+ 
+// A function to add a random cell from 0-10 as a goal for Bob to reach.
+function addFinish() {
+  cells[finish].classList.add('finish')
+}
+
+
+// A fuunction to check if the 'finish' cell contains the Bob class.
+function checkFinish() {
+   if (cells[finish].classList.contains('bob')) {
+    return endGame()
+   }
+  }
+
+
+// A basic function to check the end of the game.  
+  function endGame() {
+    removeBob()
+    addBob(startingPosition)
+  }
+
   // ! Events
   document.addEventListener('keydown', moveBob)
   startBtn.addEventListener('click', start)
