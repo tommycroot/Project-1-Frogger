@@ -22,6 +22,8 @@
   }
   
   .grid {
+    background-image: url(../assets/Sprites/beach.jpg);
+    background-position: top;
     align-items: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;
@@ -35,7 +37,7 @@
   }
   
   .grid div {
-    border: 1px solid lightgrey;
+    /* border: 1px solid lightgrey; */
     flex-grow: 1;
     height: 10%;
     width: 10%;
