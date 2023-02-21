@@ -8,25 +8,31 @@ function init() {
   const startingPosition = 94
   let currentPosition = startingPosition
   const livesDisplay = document.querySelector('#lives-display')
+  const levelDisplay = document.querySelector('#level-display')
+  
   let lives = 3
+  let level = 1
 
+  levelDisplay.innerHTML = '🦀'.repeat(level)
   
 
   // Obstacle positions generated on the grid by being passed into addObstacles function.
   const obstacleCells = [
     [81, 83, 85, 87],
     [61, 62, 63, 66, 67],
-    [41, 42, 43, 46, 47, 48]
+    [51, 52, 53, 56, 57, 58]
   ]
 
   const woodCells = [
     [10, 11, 13, 14, 15, 17],
-    [21, 22, 23, 25, 26, 27]
+    [21, 22, 23, 25, 26, 27],
+    [33, 34, 35, 37, 38]
   ]
 
   const waterCells = [
     [12, 16, 18, 19],
-    [20, 24, 28, 29]
+    [20, 24, 28, 29],
+    [30, 31, 32, 36, 39]
   ]
 
  
@@ -48,7 +54,7 @@ function init() {
     for(let i = 0; i < cellCount; i++){
   // Create div cell, add index as innerText, add Data attribute representing index.
       const cell = document.createElement('div')
-      // cell.innerText = i
+      cell.innerText = i
       cell.dataset.index = i
   // Append to grid and push cells into cells array.
       grid.appendChild(cell)
@@ -100,13 +106,14 @@ function init() {
     handleCollision()
     moveObstacles(300, 'patrick', 0, 80, -1)
     moveObstacles(500, 'squidward', 1, 69, 1)
-    moveObstacles(3000, 'krab', 2, 49, 1)
+    moveObstacles(3000, 'krab', 2, 59, 1)
     moveWood(2500, 'wood', 0, 19, 1)
     moveWood(2500, 'wood', 1, 20, -1)
+    moveWood(1500, 'wood', 2, 39, 1)
     moveWater(2500, 'water', 0, 19, 1)
-    moveWater(2500, 'water', 1, 20, -1 )
+    moveWater(2500, 'water', 1, 20, -1)
+    moveWood(1500, 'water', 2, 39, 1)
     startBtn.style.visibility = 'hidden'
-    
   }
 
   // A function to add obstacles (sprite classes) onto the grid.
@@ -237,8 +244,6 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
     }
   })
 })
-
-
 }
  
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
@@ -250,9 +255,15 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
   // A fuunction to check if the 'finish' cell contains the Bob class.
   function checkFinish() {
     if (cells[finish].classList.contains('bob')) {
-    endGame()
+    levelComplete()
+    level = level + 1
+    levelDisplay.innerHTML = '🦀'.repeat(level)
+        removeBob()
+    addBob(startingPosition)
+    
    } else if (lives === 0) {
     endGame()
+    restartGame()
    }
   }
 
@@ -264,19 +275,30 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
     livesDisplay.style.visibility = 'hidden'
     removeBob()
     addBob(startingPosition)
-    
+  }
+
+  // Level up
+  function levelComplete() {
+    clearInterval(moveObstacles)
+    clearInterval(moveWater)
+    clearInterval(moveWood)
+
+  }
+
+  function restartGame() {
+    playAgain.addEventListener('click', reload)
   }
   
-  // A basic function to reload the page
-  function restartGame() {
+  function reload() {
     location.reload()
   }
+
 
 
   // ! Events
   document.addEventListener('keydown', moveBob)
   startBtn.addEventListener('click', start)
-  playAgain.addEventListener('click', restartGame)
+  
   
   
   // ! Page Load

@@ -26,13 +26,12 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
-    width: 80%;
+    height: 650px;
+    width: 450px;
     justify-content: center;
-    height: 600px;
-    width: 600px;
     background-color: aliceblue;
     margin-bottom: 25px;
+    margin-top: 25px;
   }
   
   .grid div {
@@ -50,13 +49,6 @@
     padding: 0px;
   }
   
-  .grid div.bob {
-    background-image: url('../assets/Sprites/spongebob_walk.gif');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-  }
-
   .grid div.squidward {
     background-image: url('../assets/Sprites/squidward.gif');
     background-repeat: no-repeat;
@@ -79,6 +71,7 @@
     background-image: url('../assets/Sprites/wood.jpg');
     background-repeat: repeat;
     background-size: contain;
+    z-index: 0;
   }
 
   .grid div.water {
@@ -87,6 +80,12 @@
     background-size: contain;
   }
 
+  .grid div.bob {
+    background-image: url('../assets/Sprites/spongebob_walk.gif');
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+  }
 
   .grid div.finish {
     background-color: crimson;
