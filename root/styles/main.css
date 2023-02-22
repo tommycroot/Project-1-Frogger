@@ -73,14 +73,14 @@
   }
   
   .grid {
-    background-image: url(../assets/Sprites/beach.jpg);
+    background-image: url(../assets/Sprites/beach.webp);
     background-size: cover;
     align-items: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     flex-wrap: wrap;
     height: 650px;
-    width: 450px;
+    width: 350px;
     justify-content: center;
     background-color: aliceblue;
     margin-bottom: 25px;
@@ -102,6 +102,11 @@
     margin: 0px;
     padding: 0px;
   }
+
+  #lives-display {
+    margin-left: 50px;
+    margin-top: 0px;
+  }
   
   .grid div.squidward {
     background-image: url('../assets/Sprites/squidward.gif');
@@ -119,6 +124,19 @@
     background-image: url('../assets/Sprites/patrick.gif');
     background-repeat: no-repeat;
     background-size: contain;
+  }
+
+  .grid div.gary {
+    background-image: url('../assets/Sprites/gary.gif');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  
+  .grid div.grandma {
+    background-image: url('../assets/Sprites/grandma.gif');
+    background-repeat: no-repeat;
+    background-size:inherit;
   }
 
   .grid div.wood {

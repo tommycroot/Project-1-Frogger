@@ -15,17 +15,21 @@ function init() {
   const obstacleCells = [
     [81, 83, 85, 87],
     [61, 62, 63, 66, 67],
-    [41, 42, 43, 46, 47, 48]
+    [41, 42, 43, 46, 47, 48],
+    [59],
+    [70]
   ]
 
   const woodCells = [
     [10, 11, 13, 14, 15, 17],
-    [21, 22, 23, 25, 26, 27]
+    [21, 22, 23, 25, 26, 27],
+    [31, 34, 37]
   ]
 
   const waterCells = [
     [12, 16, 18, 19],
-    [20, 24, 28, 29]
+    [20, 24, 28, 29],
+    [30, 32, 33, 35, 36, 38, 39]
   ]
     
   // Creating the grid
@@ -131,23 +135,30 @@ function init() {
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
     difficulty.remove()
+    arrows.remove()
     checkFinish()
     addFinish()
     handleCollision()
     addObstacles(obstacleCells, 0, 'patrick')
     addObstacles(obstacleCells, 1, 'squidward')
     addObstacles(obstacleCells, 2, 'krab')
+    addObstacles(obstacleCells, 3, 'gary')
     moveObstacles(500, 'patrick', 0, 80, -1)
     moveObstacles(500, 'squidward', 1, 69, 1)
     moveObstacles(500, 'krab', 2, 49, 1)
+    moveObstacles(200, 'gary', 3, 50, -1)
     addWood(woodCells, 0, 'wood')
     addWood(woodCells, 1, 'wood')
+    addWood(woodCells, 2, 'wood')
     moveWood(500, 'wood', 0, 19, 1)
     moveWood(500, 'wood', 1, 20, -1)
+    moveWood(500, 'wood', 2, 39, 1 )
     addWater(waterCells, 0, 'water')
     addWater(waterCells, 1, 'water')
+    addWater(waterCells, 2, 'water')
     moveWater(500, 'water', 0, 19, 1)
-    moveWater(500, 'water', 1, 20, -1 )   
+    moveWater(500, 'water', 1, 20, -1 ) 
+    moveWater(500, 'water', 2, 39, 1 )    
   }
 
   function start() {
@@ -158,13 +169,28 @@ function init() {
     checkFinish()
     addFinish()
     handleCollision()
+    addObstacles(obstacleCells, 0, 'patrick')
+    addObstacles(obstacleCells, 1, 'squidward')
+    addObstacles(obstacleCells, 2, 'krab')
+    addObstacles(obstacleCells, 3, 'gary')
+    addObstacles(obstacleCells, 4, 'sandy')
     moveObstacles(500, 'patrick', 0, 80, -1)
     moveObstacles(500, 'squidward', 1, 69, 1)
     moveObstacles(500, 'krab', 2, 49, 1)
-    moveWood(2500, 'wood', 0, 19, 1)
-    moveWood(2500, 'wood', 1, 20, -1)
-    moveWater(2500, 'water', 0, 19, 1)
-    moveWater(2500, 'water', 1, 20, -1 )
+    moveObstacles(200, 'gary', 3, 50, -1)
+    moveObstacles(300, 'grandma', 4, 79, 1)
+    addWood(woodCells, 0, 'wood')
+    addWood(woodCells, 1, 'wood')
+    addWood(woodCells, 2, 'wood')
+    moveWood(500, 'wood', 0, 19, 1)
+    moveWood(500, 'wood', 1, 20, -1)
+    moveWood(500, 'wood', 2, 39, 1 )
+    addWater(waterCells, 0, 'water')
+    addWater(waterCells, 1, 'water')
+    addWater(waterCells, 2, 'water')
+    moveWater(500, 'water', 0, 19, 1)
+    moveWater(500, 'water', 1, 20, -1 ) 
+    moveWater(500, 'water', 2, 39, 1 )    
   }
 
   // A function to add obstacles (sprite classes) onto the grid.
