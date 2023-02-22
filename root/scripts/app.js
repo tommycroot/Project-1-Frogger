@@ -8,7 +8,7 @@ function init() {
   const startingPosition = 94
   let currentPosition = startingPosition
   const livesDisplay = document.querySelector('#lives-display')
-  
+  livesDisplay.style.visibility = 'hidden'
   let lives = 3
 
   // Obstacle positions generated on the grid by being passed into addObstacles function.
@@ -48,6 +48,7 @@ function init() {
   const playAgain = document.querySelector('#playAgain')
   playAgain.style.visibility = 'hidden'
   grid.style.visibility = 'hidden'
+
    
   
   function createGrid(){
@@ -102,6 +103,7 @@ function init() {
 
   function easyStart() {
     grid.style.visibility = 'visible'
+    livesDisplay.style.visibility = 'visible'
     difficulty.remove()
     checkFinish()
     addFinish()
@@ -125,6 +127,7 @@ function init() {
 
   function mediumStart() {
     grid.style.visibility = 'visible'
+    livesDisplay.style.visibility = 'visible'
     difficulty.remove()
     checkFinish()
     addFinish()
@@ -147,6 +150,7 @@ function init() {
 
   function start() {
     grid.style.visibility = 'visible'
+    livesDisplay.style.visibility = 'visible'
     difficulty.remove()
     checkFinish()
     addFinish()
@@ -297,13 +301,12 @@ function handleCollision() {
   function checkFinish() {
     if (currentPosition === finish) {
     removeBob()
-    levelComplete()
+    endGame()
    } else if (lives === 0) {
     endGame()
    }
   }
-
-
+  
   // A basic function to check the end of the game.  
   function endGame() {
     grid.classList.remove('grid')
@@ -312,12 +315,7 @@ function handleCollision() {
     removeBob()
     addBob(startingPosition)
   }
-  
-  function levelComplete() {
-    currentPosition = startingPosition
-    removeBob()
-    addBob(startingPosition)
-  }
+
 
   // A basic function to reload the page
   function restartGame() {
