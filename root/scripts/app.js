@@ -39,6 +39,7 @@ function init() {
   const easy = document.querySelector('#easy')
   const medium = document.querySelector('#medium')
   const difficulty = document.querySelector('.difficulty')
+  const arrows = document.querySelector('#arrows')
 
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
   function addFinish() {
@@ -105,6 +106,7 @@ function init() {
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
     difficulty.remove()
+    arrows.remove()
     checkFinish()
     addFinish()
     handleCollision()
@@ -152,6 +154,7 @@ function init() {
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
     difficulty.remove()
+    arrows.remove()
     checkFinish()
     addFinish()
     handleCollision()
