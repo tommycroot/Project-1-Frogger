@@ -8,9 +8,9 @@
     background-image: url(../assets/Sprites/Bubble-background.webp);
 
   }
-  
-  #startBtn {
-    margin: 25px 0px 25px 0px;
+
+  .difficulty {
+    margin-top: 250px;
   }
 
   .grid-wrapper {
@@ -23,7 +23,7 @@
   
   .grid {
     background-image: url(../assets/Sprites/beach.jpg);
-    background-position:inherit;
+    background-size: cover;
     align-items: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;
@@ -41,6 +41,7 @@
     flex-grow: 1;
     height: 10%;
     width: 10%;
+    position: relative;
   }
 
   .startLives {
@@ -73,7 +74,6 @@
     background-image: url('../assets/Sprites/wood.jpg');
     background-repeat: repeat;
     background-size: contain;
-    z-index: 0;
   }
 
   .grid div.water {
@@ -82,13 +82,20 @@
     background-size: contain;
   }
 
-  .grid div.bob {
+  .grid div.bob::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
     background-image: url('../assets/Sprites/spongebob_walk.gif');
     background-repeat: no-repeat;
     background-size: contain;
-    z-index: 1;
   }
 
   .grid div.finish {
-    background-color: crimson;
+    background-image: url('../assets/Sprites/burger.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
   }

@@ -8,8 +8,8 @@ function init() {
   const startingPosition = 94
   let currentPosition = startingPosition
   const livesDisplay = document.querySelector('#lives-display')
+  
   let lives = 3
-  let level = 2
 
   // Obstacle positions generated on the grid by being passed into addObstacles function.
   const obstacleCells = [
@@ -36,6 +36,10 @@ function init() {
   const cellCount = width * height
   const finish = Math.floor(Math.random() * 10) // random position form 0 - 10
 
+  const easy = document.querySelector('#easy')
+  const medium = document.querySelector('#medium')
+  const difficulty = document.querySelector('.difficulty')
+
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
   function addFinish() {
     cells[finish].classList.add('finish')
@@ -43,6 +47,7 @@ function init() {
   
   const playAgain = document.querySelector('#playAgain')
   playAgain.style.visibility = 'hidden'
+  grid.style.visibility = 'hidden'
    
   
   function createGrid(){
@@ -77,8 +82,6 @@ function init() {
     const left = 37
     const up = 38
     const down = 40
-  
-    
     removeBob()
   
       if (e.keyCode === right && currentPosition % width !== width - 1){
@@ -96,20 +99,65 @@ function init() {
     }
   
   // Large function to start the game. 
-  function start() {
+
+  function easyStart() {
+    grid.style.visibility = 'visible'
+    difficulty.remove()
     checkFinish()
-    addBob(startingPosition)
     addFinish()
     handleCollision()
-    moveObstacles(300, 'patrick', 0, 80, -1)
+    addObstacles(obstacleCells, 0, 'patrick')
+    addObstacles(obstacleCells, 1, 'squidward')
+    addObstacles(obstacleCells, 2, 'krab')
+    moveObstacles(2000, 'patrick', 0, 80, -1)
+    moveObstacles(2000, 'squidward', 1, 69, 1)
+    moveObstacles(2000, 'krab', 2, 49, 1)
+    addWood(woodCells, 0, 'wood')
+    addWood(woodCells, 1, 'wood')
+    moveWood(2000, 'wood', 0, 19, 1)
+    moveWood(2000, 'wood', 1, 20, -1)
+    addWater(waterCells, 0, 'water')
+    addWater(waterCells, 1, 'water')
+    moveWater(2000, 'water', 0, 19, 1)
+    moveWater(2000, 'water', 1, 20, -1 )
+    addBob(startingPosition)   
+  }
+
+  function mediumStart() {
+    grid.style.visibility = 'visible'
+    difficulty.remove()
+    checkFinish()
+    addFinish()
+    handleCollision()
+    addObstacles(obstacleCells, 0, 'patrick')
+    addObstacles(obstacleCells, 1, 'squidward')
+    addObstacles(obstacleCells, 2, 'krab')
+    moveObstacles(500, 'patrick', 0, 80, -1)
     moveObstacles(500, 'squidward', 1, 69, 1)
-    moveObstacles(3000, 'krab', 2, 49, 1)
+    moveObstacles(500, 'krab', 2, 49, 1)
+    addWood(woodCells, 0, 'wood')
+    addWood(woodCells, 1, 'wood')
+    moveWood(500, 'wood', 0, 19, 1)
+    moveWood(500, 'wood', 1, 20, -1)
+    addWater(waterCells, 0, 'water')
+    addWater(waterCells, 1, 'water')
+    moveWater(500, 'water', 0, 19, 1)
+    moveWater(500, 'water', 1, 20, -1 )   
+  }
+
+  function start() {
+    grid.style.visibility = 'visible'
+    difficulty.remove()
+    checkFinish()
+    addFinish()
+    handleCollision()
+    moveObstacles(500, 'patrick', 0, 80, -1)
+    moveObstacles(500, 'squidward', 1, 69, 1)
+    moveObstacles(500, 'krab', 2, 49, 1)
     moveWood(2500, 'wood', 0, 19, 1)
     moveWood(2500, 'wood', 1, 20, -1)
     moveWater(2500, 'water', 0, 19, 1)
     moveWater(2500, 'water', 1, 20, -1 )
-    startBtn.style.visibility = 'hidden'
-    
   }
 
   // A function to add obstacles (sprite classes) onto the grid.
@@ -249,7 +297,7 @@ function handleCollision() {
   function checkFinish() {
     if (currentPosition === finish) {
     removeBob()
-    reset()
+    levelComplete()
    } else if (lives === 0) {
     endGame()
    }
@@ -265,7 +313,7 @@ function handleCollision() {
     addBob(startingPosition)
   }
   
-  function reset() {
+  function levelComplete() {
     currentPosition = startingPosition
     removeBob()
     addBob(startingPosition)
@@ -277,12 +325,14 @@ function handleCollision() {
   }
 
 
+
   // ! Events
   document.addEventListener('keyup', moveBob)
   startBtn.addEventListener('click', start)
   playAgain.addEventListener('click', restartGame)
-  
-  
+  easy.addEventListener('click', easyStart)
+  medium.addEventListener('click', mediumStart)
+
   // ! Page Load
   createGrid()
     
