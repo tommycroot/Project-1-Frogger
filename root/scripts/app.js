@@ -45,8 +45,7 @@ function init() {
   const difficulty = document.querySelector('.difficulty') // Difficult start button
   const arrows = document.querySelector('#arrows')
   const controls = document.querySelector('.controls')
-  
-  
+
 
 
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
@@ -104,7 +103,9 @@ function init() {
         currentPosition += width
       } else {
       }
+      handleCollision()
     addBob(currentPosition)
+    
     checkFinish()
     }
   
@@ -180,7 +181,7 @@ function init() {
     addObstacles(obstacleCells, 1, 'squidward')
     addObstacles(obstacleCells, 2, 'krab')
     addObstacles(obstacleCells, 3, 'gary')
-    addObstacles(obstacleCells, 4, 'sandy')
+    addObstacles(obstacleCells, 4, 'grandma')
     moveObstacles(500, 'patrick', 0, 80, -1)
     moveObstacles(500, 'squidward', 1, 69, 1)
     moveObstacles(500, 'krab', 2, 49, 1)
@@ -280,7 +281,6 @@ function moveWood(intervalTime, className, woodRow, targetCell, movement = 1) {
       }
     })
     addWood(woodCells, woodRow, className)
-
   }, intervalTime)
 }
 
@@ -368,8 +368,6 @@ function handleCollision() {
     location.reload()
   }
 
-
-
   // ! Events
   document.addEventListener('keyup', moveBob)
   startBtn.addEventListener('click', start)
@@ -377,9 +375,9 @@ function handleCollision() {
   easy.addEventListener('click', easyStart)
   medium.addEventListener('click', mediumStart)
 
+
   // ! Page Load
   createGrid()
-    
   }
   
   window.addEventListener('DOMContentLoaded', init)
