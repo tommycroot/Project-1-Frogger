@@ -103,9 +103,9 @@ function init() {
         currentPosition += width
       } else {
       }
-      handleCollision()
-    addBob(currentPosition)
     
+    addBob(currentPosition)
+    handleCollision()
     checkFinish()
     }
   
@@ -123,15 +123,17 @@ function init() {
     addObstacles(obstacleCells, 0, 'patrick')
     addObstacles(obstacleCells, 1, 'squidward')
     addObstacles(obstacleCells, 2, 'krab')
-    moveObstacles(2000, 'patrick', 0, 80, -1)
-    moveObstacles(2000, 'squidward', 1, 69, 1)
-    moveObstacles(2000, 'krab', 2, 49, 1)
+    moveObstacles(1500, 'patrick', 0, 80, -1)
+    moveObstacles(1000, 'squidward', 1, 69, 1)
+    moveObstacles(1000, 'krab', 2, 49, 1)
     addWood(woodCells, 0, 'wood')
     addWood(woodCells, 1, 'wood')
+    addWood(woodCells, 2, 'wood')
     moveWood(2000, 'wood', 0, 19, 1)
     moveWood(2000, 'wood', 1, 20, -1)
     addWater(waterCells, 0, 'water')
     addWater(waterCells, 1, 'water')
+    addWater(waterCells, 2, 'water')
     moveWater(2000, 'water', 0, 19, 1)
     moveWater(2000, 'water', 1, 20, -1 )
     
@@ -150,22 +152,22 @@ function init() {
     addObstacles(obstacleCells, 1, 'squidward')
     addObstacles(obstacleCells, 2, 'krab')
     addObstacles(obstacleCells, 3, 'gary')
-    moveObstacles(500, 'patrick', 0, 80, -1)
-    moveObstacles(500, 'squidward', 1, 69, 1)
+    moveObstacles(800, 'patrick', 0, 80, -1)
+    moveObstacles(1000, 'squidward', 1, 69, 1)
     moveObstacles(500, 'krab', 2, 49, 1)
-    moveObstacles(200, 'gary', 3, 50, -1)
+    moveObstacles(400, 'gary', 3, 50, -1)
     addWood(woodCells, 0, 'wood')
     addWood(woodCells, 1, 'wood')
     addWood(woodCells, 2, 'wood')
-    moveWood(500, 'wood', 0, 19, 1)
-    moveWood(500, 'wood', 1, 20, -1)
-    moveWood(500, 'wood', 2, 39, 1 )
+    moveWood(1500, 'wood', 0, 19, 1)
+    moveWood(1500, 'wood', 1, 20, -1)
+    moveWood(1500, 'wood', 2, 39, 1 )
     addWater(waterCells, 0, 'water')
     addWater(waterCells, 1, 'water')
     addWater(waterCells, 2, 'water')
-    moveWater(500, 'water', 0, 19, 1)
-    moveWater(500, 'water', 1, 20, -1 ) 
-    moveWater(500, 'water', 2, 39, 1 )    
+    moveWater(1500, 'water', 0, 19, 1)
+    moveWater(1500, 'water', 1, 20, -1 ) 
+    moveWater(1500, 'water', 2, 39, 1 )    
   }
 
   function start() {
@@ -190,15 +192,15 @@ function init() {
     addWood(woodCells, 0, 'wood')
     addWood(woodCells, 1, 'wood')
     addWood(woodCells, 2, 'wood')
-    moveWood(500, 'wood', 0, 19, 1)
-    moveWood(500, 'wood', 1, 20, -1)
-    moveWood(500, 'wood', 2, 39, 1 )
+    moveWood(1000, 'wood', 0, 19, 1)
+    moveWood(1000, 'wood', 1, 20, -1)
+    moveWood(1000, 'wood', 2, 39, 1 )
     addWater(waterCells, 0, 'water')
     addWater(waterCells, 1, 'water')
     addWater(waterCells, 2, 'water')
-    moveWater(500, 'water', 0, 19, 1)
-    moveWater(500, 'water', 1, 20, -1 ) 
-    moveWater(500, 'water', 2, 39, 1 )    
+    moveWater(1000, 'water', 0, 19, 1)
+    moveWater(1000, 'water', 1, 20, -1 ) 
+    moveWater(1000, 'water', 2, 39, 1 )    
   }
 
   // A function to add obstacles (sprite classes) onto the grid.
