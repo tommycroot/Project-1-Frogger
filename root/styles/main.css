@@ -71,6 +71,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  #crying {
+    height: 150px
+  }
   
   .grid {
     background-image: url(../assets/Sprites/beach.webp);

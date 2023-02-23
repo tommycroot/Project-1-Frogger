@@ -46,6 +46,7 @@ function init() {
   const arrows = document.querySelector('#arrows')
   const controls = document.querySelector('.controls')
   
+  
 
 
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
@@ -336,7 +337,7 @@ function handleCollision() {
   function checkFinish() {
     if (currentPosition === finish) {
     removeBob()
-    endGame()
+    winGame()
    } else if (lives === 0) {
     endGame()
    }
@@ -346,6 +347,16 @@ function handleCollision() {
   function endGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
+    playAgain.innerHTML = `Play again? <img src="../root/assets/Sprites/crying.gif" style="height: 150px">`
+    livesDisplay.style.visibility = 'hidden'
+    removeBob()
+    addBob(startingPosition)
+  }
+
+  function winGame() {
+    grid.classList.remove('grid')
+    playAgain.style.visibility = 'visible'
+    playAgain.innerHTML = `Play again? <img src="../root/assets/Sprites/thumbs.gif" style="height: 100px">`
     livesDisplay.style.visibility = 'hidden'
     removeBob()
     addBob(startingPosition)
