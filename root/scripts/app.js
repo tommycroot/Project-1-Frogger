@@ -11,7 +11,8 @@ function init() {
   livesDisplay.style.visibility = 'hidden'
   let lives = 3
 
-  // Obstacle positions generated on the grid by being passed into addObstacles function.
+
+  // Obstacle positions generated on the grid by being passed into addObstacles/addWood/addWater function.
   const obstacleCells = [
     [81, 83, 85, 87],
     [61, 62, 63, 66, 67],
@@ -45,15 +46,33 @@ function init() {
   const difficulty = document.querySelector('.difficulty') // Difficult start button
   const arrows = document.querySelector('#arrows')
   const controls = document.querySelector('.controls')
+  // Play again button
+  playAgain = document.querySelector('#playAgain')
 
+  audio = document.querySelector('#audio')
+  function playAudio(sound){
+    audio.src = `./assets/audio/oh-no.mp3`
+    audio.play()
+  }
 
+  function playAudio2(sound){
+    audio.src = `./assets/audio/yay.mp3`
+    audio.play()
+  }
+
+  function playAudio3(sound){
+    audio.src = `./assets/audio/im-ready.mp3`
+    audio.play()
+  }
+
+  audio.volume = 0.1
 
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
   function addFinish() {
     cells[finish].classList.add('finish')
   }
   
-  const playAgain = document.querySelector('#playAgain')
+  // Hiding elements 
   playAgain.style.visibility = 'hidden'
   grid.style.visibility = 'hidden'
 
@@ -109,7 +128,7 @@ function init() {
     checkFinish()
     }
   
-  // Large function to start the game. 
+  // Large function(s) to start the game. Easy/Medium/Dificult 
 
   function easyStart() {
     addBob(startingPosition)   
@@ -136,7 +155,6 @@ function init() {
     addWater(waterCells, 2, 'water')
     moveWater(2000, 'water', 0, 19, 1)
     moveWater(2000, 'water', 1, 20, -1 )
-    
   }
 
   function mediumStart() {
@@ -270,6 +288,7 @@ function init() {
   }, intervalTime)
 }
 
+// A move obstacles function for wood
 function moveWood(intervalTime, className, woodRow, targetCell, movement = 1) {
   timer = setInterval(()=> {
   removeWood(woodCells[woodRow], className)
@@ -286,7 +305,7 @@ function moveWood(intervalTime, className, woodRow, targetCell, movement = 1) {
   }, intervalTime)
 }
 
-
+// A move obstacles function for water
 function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) {
   timer = setInterval(()=> {
   removeWater(waterCells[waterRow], className)
@@ -306,13 +325,14 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
 
 
 function handleCollision() {
-  // Checking that each obstacle cell in the obstacle arrays doesn't contain the Bob class.
+  // Checking that each obstacle and water cell in the obstacle arrays do not contain the Bob class.
   // If they do, remove Bob from the grid and start him at the starting position.
   obstacleCells.forEach(row => {
     row.forEach(obstacle => {
       if (cells[obstacle].classList.contains('bob')) {
         removeBob()
         lives--
+        playAudio()
         livesDisplay.innerHTML = lives ? '❤️'.repeat(lives) : '💔'
         currentPosition = startingPosition
         checkFinish()
@@ -338,6 +358,7 @@ function handleCollision() {
   // A function to check if the 'finish' cell contains the Bob class.
   function checkFinish() {
     if (currentPosition === finish) {
+    playAudio2()
     removeBob()
     winGame()
    } else if (lives === 0) {
@@ -345,7 +366,7 @@ function handleCollision() {
    }
   }
   
-  // A basic function to check the end of the game.  
+  // A basic function for a game loss.  
   function endGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
@@ -355,6 +376,7 @@ function handleCollision() {
     addBob(startingPosition)
   }
 
+  // A basic function for a game win
   function winGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
@@ -365,7 +387,7 @@ function handleCollision() {
   }
 
 
-  // A basic function to reload the page
+  // A function to reload the page
   function restartGame() {
     location.reload()
   }
@@ -377,6 +399,7 @@ function handleCollision() {
   easy.addEventListener('click', easyStart)
   medium.addEventListener('click', mediumStart)
 
+  
 
   // ! Page Load
   createGrid()
