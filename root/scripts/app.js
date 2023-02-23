@@ -40,10 +40,13 @@ function init() {
   const cellCount = width * height
   const finish = Math.floor(Math.random() * 10) // random position form 0 - 10
 
-  const easy = document.querySelector('#easy')
-  const medium = document.querySelector('#medium')
-  const difficulty = document.querySelector('.difficulty')
+  const easy = document.querySelector('#easy') // Easy start button 
+  const medium = document.querySelector('#medium') // Medium start button
+  const difficulty = document.querySelector('.difficulty') // Difficult start button
   const arrows = document.querySelector('#arrows')
+  const controls = document.querySelector('.controls')
+  
+
 
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
   function addFinish() {
@@ -54,8 +57,8 @@ function init() {
   playAgain.style.visibility = 'hidden'
   grid.style.visibility = 'hidden'
 
-   
   
+
   function createGrid(){
   // Using the total cell count we've saved to a variable then using a for loop to iterate that many times.
     for(let i = 0; i < cellCount; i++){
@@ -107,6 +110,7 @@ function init() {
   // Large function to start the game. 
 
   function easyStart() {
+    addBob(startingPosition)   
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
     difficulty.remove()
@@ -128,10 +132,11 @@ function init() {
     addWater(waterCells, 1, 'water')
     moveWater(2000, 'water', 0, 19, 1)
     moveWater(2000, 'water', 1, 20, -1 )
-    addBob(startingPosition)   
+    
   }
 
   function mediumStart() {
+    addBob(startingPosition)   
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
     difficulty.remove()
@@ -162,6 +167,7 @@ function init() {
   }
 
   function start() {
+    addBob(startingPosition)   
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
     difficulty.remove()
