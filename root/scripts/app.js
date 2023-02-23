@@ -61,7 +61,12 @@ function init() {
   }
 
   function playAudio3(sound){
-    audio.src = `./assets/audio/im-ready.mp3`
+    audio.src = `./assets/audio/come-on.mp3`
+    audio.play()
+  }
+
+  function playAudio4(sound){
+    audio.src = `./assets/audio/water.mp3`
     audio.play()
   }
 
@@ -70,6 +75,7 @@ function init() {
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
   function addFinish() {
     cells[finish].classList.add('finish')
+    
   }
   
   // Hiding elements 
@@ -131,7 +137,7 @@ function init() {
   // Large function(s) to start the game. Easy/Medium/Dificult 
 
   function easyStart() {
-    addBob(startingPosition)   
+    addBob(startingPosition)
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
     difficulty.remove()
@@ -346,6 +352,7 @@ function handleCollision() {
       if (cells[water].classList.contains('bob')) {
       removeBob()
       lives--
+      playAudio4()
       livesDisplay.innerHTML = lives ? '❤️'.repeat(lives) : '💔'
       currentPosition = startingPosition
       checkFinish()
@@ -363,6 +370,7 @@ function handleCollision() {
     winGame()
    } else if (lives === 0) {
     endGame()
+    playAudio3()
    }
   }
   
@@ -370,7 +378,7 @@ function handleCollision() {
   function endGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
-    playAgain.innerHTML = `Play again? <img src="../root/assets/Sprites/crying.gif" style="height: 150px">`
+    playAgain.innerHTML = `Oh no! Play again? <img src="../root/assets/Sprites/crying.gif" style="height: 150px">`
     livesDisplay.style.visibility = 'hidden'
     removeBob()
     addBob(startingPosition)
@@ -380,7 +388,7 @@ function handleCollision() {
   function winGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
-    playAgain.innerHTML = `Play again? <img src="../root/assets/Sprites/thumbs.gif" style="height: 100px">`
+    playAgain.innerHTML = `Yay! Play again? <img src="../root/assets/Sprites/thumbs.gif" style="height: 100px">`
     livesDisplay.style.visibility = 'hidden'
     removeBob()
     addBob(startingPosition)
@@ -397,6 +405,7 @@ function handleCollision() {
   startBtn.addEventListener('click', start)
   playAgain.addEventListener('click', restartGame)
   easy.addEventListener('click', easyStart)
+  easy.addEventListener('click', playAudio3)
   medium.addEventListener('click', mediumStart)
 
   
