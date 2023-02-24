@@ -10,6 +10,7 @@ function init() {
   const livesDisplay = document.querySelector('#lives-display')
   livesDisplay.style.visibility = 'hidden'
   let lives = 3
+  let timer
 
 
   // Obstacle positions generated on the grid by being passed into addObstacles/addWood/addWater function.
@@ -112,26 +113,27 @@ function init() {
 
   // Moving Bob around the grid.
   function moveBob(e){
-    const right = 39
-    const left = 37
-    const up = 38
-    const down = 40
-    removeBob()
-  
-      if (e.keyCode === right && currentPosition % width !== width - 1){
-        currentPosition++ 
-      } else if (e.keyCode === left && currentPosition % width !== 0){
-        currentPosition--
-      } else if (e.keyCode === up && currentPosition >= width){
-        currentPosition -= width
-      } else if (e.keyCode === down && currentPosition + width < cellCount){
-        currentPosition += width
-      } else {
-      }
+    if (currentPosition !== finish && lives !== 0) {
+      const right = 39
+      const left = 37
+      const up = 38
+      const down = 40
+      removeBob()
     
-    addBob(currentPosition)
-    handleCollision()
-    checkFinish()
+        if (e.keyCode === right && currentPosition % width !== width - 1){
+          currentPosition++ 
+        } else if (e.keyCode === left && currentPosition % width !== 0){
+          currentPosition--
+        } else if (e.keyCode === up && currentPosition >= width){
+          currentPosition -= width
+        } else if (e.keyCode === down && currentPosition + width < cellCount){
+          currentPosition += width
+        } else {
+        }   
+      addBob(currentPosition)
+      handleCollision()
+      checkFinish()
+    }
     }
   
   // Large function(s) to start the game. Easy/Medium/Dificult 
@@ -329,7 +331,6 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
 }, intervalTime)
 }
 
-
 function handleCollision() {
   // Checking that each obstacle and water cell in the obstacle arrays do not contain the Bob class.
   // If they do, remove Bob from the grid and start him at the starting position.
@@ -366,11 +367,10 @@ function handleCollision() {
   function checkFinish() {
     if (currentPosition === finish) {
     playAudio2()
-    removeBob()
     winGame()
    } else if (lives === 0) {
-    endGame()
     playAudio3()
+    endGame()
    }
   }
   
@@ -380,8 +380,6 @@ function handleCollision() {
     playAgain.style.visibility = 'visible'
     playAgain.innerHTML = `Oh no! Play again? <img src="../root/assets/Sprites/crying.gif" style="height: 150px">`
     livesDisplay.style.visibility = 'hidden'
-    removeBob()
-    addBob(startingPosition)
   }
 
   // A basic function for a game win
@@ -390,8 +388,6 @@ function handleCollision() {
     playAgain.style.visibility = 'visible'
     playAgain.innerHTML = `Yay! Play again? <img src="../root/assets/Sprites/thumbs.gif" style="height: 100px">`
     livesDisplay.style.visibility = 'hidden'
-    removeBob()
-    addBob(startingPosition)
   }
 
 
