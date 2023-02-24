@@ -1,6 +1,5 @@
 function init() {
 
-  // ! Generating a grid
 
   
   // Variables
@@ -49,20 +48,6 @@ function init() {
   const width = 10
   const height = 10
   const cellCount = width * height
-  const finish = Math.floor(Math.random() * 10) // random position form 0 - 10
-
-
-
-  // A function to add a random cell from 0-10 as a goal for Bob to reach.
-  function addFinish() {
-    cells[finish].classList.add('finish')
-    
-  }
-  
-  // Hiding elements 
-  playAgain.style.visibility = 'hidden'
-  grid.style.visibility = 'hidden'
-
   
 
   function createGrid(){
@@ -77,9 +62,20 @@ function init() {
       cells.push(cell)
       }  
     }
+
     
+  const finish = Math.floor(Math.random() * 10) // Random position frrm 0 - 10 - this is the cell Bob must reach to win
+
+  // A function to add a random cell from 0-10 as a goal for Bob to reach.
+  function addFinish() {
+    cells[finish].classList.add('finish')
+    
+  }
   
-  // ! Executions
+  // Hiding elements 
+  playAgain.style.visibility = 'hidden'
+  grid.style.visibility = 'hidden'
+    
   
   // Adding Bob class (player) onto the grid.
   function addBob(position){
