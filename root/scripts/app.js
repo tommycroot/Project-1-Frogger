@@ -4,7 +4,6 @@ function init() {
 
   
   // Variables
-  const startBtn = document.querySelector('#startBtn')
   const startingPosition = 94
   let currentPosition = startingPosition
   const livesDisplay = document.querySelector('#lives-display')
@@ -14,11 +13,13 @@ function init() {
   
   const easy = document.querySelector('#easy') // Easy start button 
   const medium = document.querySelector('#medium') // Medium start button
-  const difficulty = document.querySelector('.difficulty') // Difficult start button
-  const arrows = document.querySelector('#arrows')
-  const controls = document.querySelector('.controls')
-  // Play again button
-  playAgain = document.querySelector('#playAgain')
+  const difficult = document.querySelector('#difficult') // Difficult start button
+
+  const difficulty = document.querySelector('.difficulty') // To be hidden when grid is added
+  const arrows = document.querySelector('#arrows') // To be hidden when grid is added
+  const controls = document.querySelector('.controls') // To be hidden when grid is added
+  
+  playAgain = document.querySelector('#playAgain') // Play again button
 
 
   // Obstacle positions generated on the grid by being passed into addObstacles/addWood/addWater function.
@@ -51,28 +52,6 @@ function init() {
   const finish = Math.floor(Math.random() * 10) // random position form 0 - 10
 
 
-  audio = document.querySelector('#audio')
-  function playAudio(sound){
-    audio.src = `./assets/audio/oh-no.mp3`
-    audio.play()
-  }
-
-  function playAudio2(sound){
-    audio.src = `./assets/audio/yay.mp3`
-    audio.play()
-  }
-
-  function playAudio3(sound){
-    audio.src = `./assets/audio/come-on.mp3`
-    audio.play()
-  }
-
-  function playAudio4(sound){
-    audio.src = `./assets/audio/water.mp3`
-    audio.play()
-  }
-
-  audio.volume = 0.1
 
   // A function to add a random cell from 0-10 as a goal for Bob to reach.
   function addFinish() {
@@ -197,7 +176,7 @@ function init() {
     moveWater(1000, 'water', 2, 39, 1 )    
   }
 
-  function start() {
+  function difficultStart() {
     addBob(startingPosition)   
     grid.style.visibility = 'visible'
     livesDisplay.style.visibility = 'visible'
@@ -280,8 +259,8 @@ function init() {
     // Remove obstacles first.
     // console.log('removing obstacles')
     obstacleCells[obstacleRow] = obstacleCells[obstacleRow].map(obstacleIndex => {
-    // Mapping a new array moving the grid positions either plus or minus one.
-    // If statement to prevent obstacles moving onto a new row and move grid positions back to the start of their row.
+    // Mapping a new array moving the grid positions either plus or minus one cell.
+    // If statement to prevent obstacles moving onto a new row and to move grid positions back to the start of their row.
       if (movement === 1 && obstacleIndex >= targetCell) {
         return obstacleIndex -= 9
       } else if (movement === -1 && obstacleIndex <= targetCell) {
@@ -334,7 +313,7 @@ function moveWater(intervalTime, className, waterRow, targetCell, movement = 1) 
 
 function handleCollision() {
   // Checking that each obstacle and water cell in the obstacle arrays do not contain the Bob class.
-  // If they do, remove Bob from the grid and start him at the starting position.
+  // If they do, lose a life, remove Bob from the grid and start him at the starting position.
   obstacleCells.forEach(row => {
     row.forEach(obstacle => {
       if (cells[obstacle].classList.contains('bob')) {
@@ -348,7 +327,6 @@ function handleCollision() {
       }
     })
   })
-
   waterCells.forEach(row => {
     row.forEach(water => {
       if (cells[water].classList.contains('bob')) {
@@ -375,7 +353,7 @@ function handleCollision() {
    }
   }
   
-  // A basic function for a game loss.  
+  // A basic function to display a game loss.  
   function endGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
@@ -383,7 +361,7 @@ function handleCollision() {
     livesDisplay.style.visibility = 'hidden'
   }
 
-  // A basic function for a game win
+  // A basic function to display a game win
   function winGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
@@ -397,18 +375,42 @@ function handleCollision() {
     location.reload()
   }
 
+  // Audio functions
+  audio = document.querySelector('#audio')
+  function playAudio(sound){
+    audio.src = `./assets/audio/oh-no.mp3`
+    audio.play()
+  }
+
+  function playAudio2(sound){
+    audio.src = `./assets/audio/yay.mp3`
+    audio.play()
+  }
+
+  function playAudio3(sound){
+    audio.src = `./assets/audio/come-on.mp3`
+    audio.play()
+  }
+
+  function playAudio4(sound){
+    audio.src = `./assets/audio/water.mp3`
+    audio.play()
+  }
+
+  audio.volume = 0.1
+
   // ! Events
-  document.addEventListener('keyup', moveBob)
-  startBtn.addEventListener('click', start)
-  playAgain.addEventListener('click', restartGame)
-  easy.addEventListener('click', easyStart)
-  easy.addEventListener('click', playAudio3)
-  medium.addEventListener('click', mediumStart)
+  document.addEventListener('keyup', moveBob) // Moving Bob event
+  playAgain.addEventListener('click', restartGame) // Reloading window event
+  easy.addEventListener('click', easyStart) // Easy start event
+  medium.addEventListener('click', mediumStart) // Medium start event
+  difficult.addEventListener('click', difficultStart) // Difficult start event
 
   
 
   // ! Page Load
   createGrid()
+
   }
   
   window.addEventListener('DOMContentLoaded', init)
