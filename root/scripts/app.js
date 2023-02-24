@@ -158,7 +158,7 @@ function init() {
     addObstacles(obstacleCells, 1, 'squidward')
     addObstacles(obstacleCells, 2, 'krab')
     addObstacles(obstacleCells, 3, 'gary')
-    moveObstacles(500, 'patrick', 0, 80, -1)
+    moveObstacles(700, 'patrick', 0, 80, -1)
     moveObstacles(1000, 'squidward', 1, 69, 1)
     moveObstacles(500, 'krab', 2, 49, 1)
     moveObstacles(400, 'gary', 3, 50, -1)
@@ -167,13 +167,13 @@ function init() {
     addWood(woodCells, 2, 'wood')
     moveWood(1000, 'wood', 0, 19, 1)
     moveWood(1000, 'wood', 1, 20, -1)
-    moveWood(1000, 'wood', 2, 39, 1 )
+    moveWood(1300, 'wood', 2, 39, 1 )
     addWater(waterCells, 0, 'water')
     addWater(waterCells, 1, 'water')
     addWater(waterCells, 2, 'water')
     moveWater(1000, 'water', 0, 19, 1)
     moveWater(1000, 'water', 1, 20, -1 ) 
-    moveWater(1000, 'water', 2, 39, 1 )    
+    moveWater(1300, 'water', 2, 39, 1 )    
   }
 
   function difficultStart() {
