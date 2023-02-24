@@ -393,7 +393,7 @@ function handleCollision() {
     audio.play()
   }
 
-  audio.volume = 0.3
+  audio.volume = 0.1
 
   // ! Events
   document.addEventListener('keyup', moveBob) // Moving Bob event
