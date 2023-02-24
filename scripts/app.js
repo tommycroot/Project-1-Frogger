@@ -353,7 +353,7 @@ function handleCollision() {
   function endGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
-    playAgain.innerHTML = `Oh no! Play again? <img src="../root/assets/Sprites/crying.gif" style="height: 150px">`
+    playAgain.innerHTML = `Oh no! Play again? <img src="./assets/Sprites/crying.gif" style="height: 150px">`
     livesDisplay.style.visibility = 'hidden'
   }
 
@@ -361,7 +361,7 @@ function handleCollision() {
   function winGame() {
     grid.classList.remove('grid')
     playAgain.style.visibility = 'visible'
-    playAgain.innerHTML = `Yay! Play again? <img src="../root/assets/Sprites/thumbs.gif" style="height: 100px">`
+    playAgain.innerHTML = `Yay! Play again? <img src="./assets/Sprites/thumbs.gif" style="height: 100px">`
     livesDisplay.style.visibility = 'hidden'
   }
 
