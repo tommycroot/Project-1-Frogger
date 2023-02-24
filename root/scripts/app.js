@@ -395,7 +395,7 @@ function handleCollision() {
 
   audio.volume = 0.1
 
-  // ! Events
+  // ! Events 
   document.addEventListener('keyup', moveBob) // Moving Bob event
   playAgain.addEventListener('click', restartGame) // Reloading window event
   easy.addEventListener('click', easyStart) // Easy start event
