@@ -10,7 +10,7 @@ The game is deployed [here](https://tommycroot.github.io/Project-1-Frogger/ )
 
 ![frogger](https://user-images.githubusercontent.com/80596226/236468964-642be0c8-4a32-46d1-aab5-cadb98da5071.png)
 
-## Getting Started
+## Getting Started/Code Installation
 
 Use the clone button to download the game and source code. Simply open the index.html file in your browser and the game should start. The images and audio for this game are stored in the assets folder.
 
