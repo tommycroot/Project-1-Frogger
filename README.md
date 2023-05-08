@@ -8,7 +8,7 @@ With three weeks of software engineering behind us, it was time for our first pr
 
 The game is deployed [here](https://tommycroot.github.io/Project-1-Frogger/ )
 
-<img src="https://user-images.githubusercontent.com/80596226/236468964-642be0c8-4a32-46d1-aab5-cadb98da5071.png" width="50%" height="50%">
+<img src="https://user-images.githubusercontent.com/80596226/236468964-642be0c8-4a32-46d1-aab5-cadb98da5071.png" width="70%" height="70%">
 
 ## Getting Started/Code Installation
 
@@ -87,7 +87,7 @@ The handling of collisions was included in the function to move obstacles when i
 
 ### Winning The Game
 
-<img src="https://user-images.githubusercontent.com/80596226/236890008-6e20edde-9744-479e-87a6-c8cb943aa9c5.png" width="50%" height="50%">
+<img src="https://user-images.githubusercontent.com/80596226/236890008-6e20edde-9744-479e-87a6-c8cb943aa9c5.png" width="70%" height="70%">
 
 I generated a random cell from 0-9 on the top line of the grid and stored it as a variable. Then I made an addFinish function that targeted the cell with the i of the random number and added the finish class to it. If SpongeBob can make it all the way to that cell, then the game is won. 
 
@@ -111,7 +111,7 @@ Due to the fact I never implemented a proper reset game function and was using l
 
 I am happy to have completed the MVP and added additional enhancements within the timeframe. I am most pleased to have produced a solid game that functions properly. I think the game is quite nice to look at and it plays well too. Some of the logic used to create a couple of my functions has thankfully kept them relatively short and the fact that they have been reusable too is pleasing.
 
-<img src="https://user-images.githubusercontent.com/80596226/236480543-b9c13eb8-5e19-4b1d-9253-2edbe19374cd.png" width="50%" height="50%">
+<img src="https://user-images.githubusercontent.com/80596226/236480543-b9c13eb8-5e19-4b1d-9253-2edbe19374cd.png" width="70%" height="70%">
 
 ## Key Learnings/Takeaways
 
