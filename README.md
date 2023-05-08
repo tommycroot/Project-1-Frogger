@@ -39,7 +39,7 @@ I choose to recreate the game Frogger because it’s one of the first games I re
 
 The first bit of planning I did was to create a wireframe using Excalidraw. I tried to include as much info about how the game would work as I could, whilst also trying to identify any potential problems I may encounter. During this stage I planned to use classes to place my characters on the grid, handle collisions and detect how frogger wins the game.	
 
-After this, I spent a while pseudocoding and trying to plan out as many variables, functions and events I was going to need for the actual project. This was helpful as it helped me develop a clearer outline of how to build the game as well as imagining ways to solve the problems identified in the wireframe stage. 
+After this, I spent a while pseudocoding and trying to plan out as many variables, functions and events were going to be required to get a better picture of the project in my mind as well as having something to refer back to if I was lacking inspiration. This was helpful as it helped me develop a clearer outline of how to build the game and it got me imagining ways to solve some of the problems identified in the wireframe stage. For instance, it made sense to get the grid implemented and the frogger character moving first before trying to get the obstacles appearing and moving as I felt more comfortable with coding that section. It also made me realise in what order to do some tasks and how to break them down into smaller functions e.g. deciding to code the obstacles appearing first before tackling getting them moving or trying to attempt both in one function. 
 
 ![2023-05-05 (1)](https://user-images.githubusercontent.com/80596226/236474725-0b3c9a6a-e3c7-4bff-b983-11b3e113777f.png)
 <figcaption>Exaclidraw plan</figcaption>
@@ -51,12 +51,14 @@ After this, I spent a while pseudocoding and trying to plan out as many variable
 Firstly, I created a grid for the frogger character to move vertically and horizontally on and for obstacles to move across. I achieved this by using DOM manipulation to push cells into an empty div with a for loop. 
 
 ![2023-05-05 (3)](https://user-images.githubusercontent.com/80596226/236476582-a2b27d4a-a3c8-4f0b-a5fa-1f3fd55ce789.png)
+<figcaption>Here the grid is created by targeting the div with the class name of ‘grid.’</figcaption>
 
 ### Frogger (Bob) Movement
 
 I decided to use a Spongebob Squarepants theme to make the project a lot more fun to look at. I used standard ‘Up’, ‘Down’, ‘Left’ and ‘Right’ arrows on the keyboard linked to a ‘keyup’ addEventListener to control player movement. If statements within the function were used to ensure that Spongebob couldn’t move past the perimeter of the grid and onto rows or columns on the other side. 
 
 ![2023-05-05 (4)](https://user-images.githubusercontent.com/80596226/236477134-63b069ad-cd9e-437a-a0a9-edd9d06d2252.png)
+<figcaption>The Bob sprite is added to the starting position by adding that class to the ‘position’ cell. Bob is removed first from his current cell before moving to a new cell. </figcaption>
 
 ### Start Game Function
 
@@ -64,36 +66,39 @@ Based on the work we had done previously, it seemed pertinent to create a start 
 
 ### Adding/Removing Obstacles
 
-My whole strategy for creating the Frogger game was predicated on being able to take arrays and then passing them into a function that returned new arrays with the map array method and their cell positions moved on the grid. I created cell positions arrays that were to contain obstacle classes (later on becoming character sprites.)  I tested this by creating forEach functions that took these arrays and then either added or removed the obstacles from the grid. I then moved these functions into the start game function. Once the start function was initialised, I could see the obstacles appear for a split second and then disappear. By using console.log I was able to confirm that the functions were working as expected. 
+My whole strategy for creating the Frogger game was predicated on being able to take arrays and pass them into a function that used the map array method to return new arrays with their cell positions moved on the grid. I created cell positions arrays that contained obstacle classes (later on becoming character sprites) to test this.  I then created forEach functions that took these arrays and then either added or removed the obstacles from the grid. I then moved these functions into the start game function. Once the start function was initialised, I could see the obstacles appear for a split second and then disappear. By using console.log I was able to confirm that the functions were working as expected. 
 
 ![2023-05-05 (6)](https://user-images.githubusercontent.com/80596226/236477690-8d306f74-6f1a-43dd-842c-d61cbc858924.png)
+<figcaption>The ‘addObstacles’ function is used to add obstacle sprites to specific cells in the grid and ‘removeObstacles’ removes them. The array of arrays is called ‘obstacles’ and each inner array contains the indexes of the cells where the sprites should be placed/removed.</figcaption>
 
 ### Moving Obstacles
 
-Next up was the challenge of making the obstacles move across the grid. After wrestling with the logical challenges this presented for a while, I eventually designed a function that included multiple arguments that make the obstacles customisable and eradicates the need for multiple functions. By targeting the index of the row of obstacles in the array as an argument of the function, I was able to use this function repeatedly and avoid writing a function for every row. So I added that argument to the addObstacles function too. Also included in this function is an argument for the direction that the obstacle’s movement is to travel in and a targetCell argument used to make sure the obstacles stayed within their rows. Finally, by using a timer and setting the interval time as an argument,  I realised I could simply pass in different interval times and achieve obstacles moving at different speeds. Later on, this function was recreated to move logs and water together. The water and log cell position arrays had to fill the whole row and they had to have the exact interval times to work properly. 
+Next up was the challenge of making the obstacles move across the grid. After wrestling with the logical challenges this presented for a while, I eventually designed a function that included multiple arguments to make the obstacles customisable and also eradicate the need for multiple functions. I realised that by targeting the index of the row of obstacles in the array as an argument of the function, I was able to use this function repeatedly and avoid writing a function for every row. So I added that argument to the addObstacles function. Also included in this function is an argument for the direction that the obstacle’s movement is to travel in and a targetCell argument used to make sure the obstacles stayed within their rows. Finally, by using a timer and setting the interval time as an argument,  I realised I could simply pass in different interval times and achieve obstacles moving at different speeds. Later on, this function was recreated to move logs and water together. The water and log cell position arrays had to fill the whole row and they had to have exact interval times to work properly. 
 
 ![2023-05-05 (7)](https://user-images.githubusercontent.com/80596226/236478356-3a4c1500-a6d0-40db-98f0-d81fa968d5ec.png)
+<figcaption>Inside the function, a ‘setInterval’ method is used to create a timer that repeatedly executes the code inside the function at the specified interval. The ‘intervalTime’ is customisable so that obstacles can travel at different speeds. </figcaption>
 
 ### Handling Collisions
 
 The handling of collisions was included in the function to move obstacles when it was completed, but it was created after. This function again uses a forEach method and it checks if the cells in the array rows passed into the moveObstacles function are containing the class of Bob or not. If the cell does contain the class of Bob, then Bob is removed from the grid and placed at the starting position. This function was then recreated further on in my project for the water cells.
 
 ![2023-05-05 (8)](https://user-images.githubusercontent.com/80596226/236478891-0332267f-7c22-4779-bb57-b4f877df1be6.png)
+<figcaption>The function iterates through the ‘obstacleCells’ array and checks if the cells also contain the ‘bob’ class. If a collision is detected, the function calls the ‘removeBob’ function, decrements the ‘lives’ counter, plays an audio file to indicate the collision, updates the ‘livesDisplay’ element to show the current number of lives, sets the ‘currentPosition’ variable to the ‘startingPosition’, calls the ‘checkFinish’ function to check if the game has ended and finally calls the ‘addBob’ function to add the player sprite back to the starting position.</figcaption>
 
 ### Winning The Game
 I generated a random cell from 0-9 on the top line of the grid and stored it as a variable. Then I made an addFinish function that targeted the cell with the i of the random number and added the finish class to it. If SpongeBob can make it all the way to that cell, then the game is won. 
 
-I created a check finish function that checked if the cell currently containing the SpongeBob class also included the class of finish. If it did then the game was won. Within this same function, I also implemented an if statement to check if SpongeBob has any lives left. If he doesn’t, then unfortunately the game is lost.  There were also win game and end game functions largely made up of different CSS stylings to display different results of the game finish. These were later added and used within the checkFinish function.
-
-Finally, rounding off the handling of the end game is a simple restart game function that uses location.reload. Eventually this was used as an event listener for a button that returned the player back to the main screen.
+I created a ‘checkFinish’ function to check if the cell currently containing the SpongeBob class also included the class of finish. If it does then the game is won. Within this same function, I also implemented an if statement to check if SpongeBob has any lives left. If he doesn’t, then unfortunately the game is lost.  There were also win game and end game functions largely made up of different CSS stylings to display different results of a game finish. These were later added and used within the checkFinish function.
 
 ![2023-05-05 (9)](https://user-images.githubusercontent.com/80596226/236479307-3eba5c85-e6b2-4846-b6c7-9a7d4810f64e.png)
+<figcaption>The ‘checkFinish’ function is called to check if the player has reached the finish cell or if the player has run out of lives. The ‘endGame’ and ‘winGame’ functions both remove the ‘grid’ class from the game board element making it disappear from the screen. They also set the ‘visibility’ style property of the ‘playAgain’ button to ‘visible’ so the player can restart the game and the ‘livesDisplay’ element is hidden since the game has ended. Finally, the ‘restartGame’ function is called when the player clicks the ‘playAgain’ button to reload the page and start a new game.</figcaption>
 
 ### Difficulty Levels
 
 I added different difficulties to the game by creating three different start functions that the player can choose from on the main screen. These were added as event listeners to three different difficulty buttons. Since the interval time of the obstacles and water movement are arguments, I could easily customise the speed in which they move across the screen. In addition, I could simply add a new array to the obstacles array, target that array with the indexRow argument used in the move obstacles function and add a new class to it by modifying its class argument. 
 
 ![2023-05-05 (10)](https://user-images.githubusercontent.com/80596226/236479842-c97750c3-a18e-493e-b44d-092f503555f1.png)
+<figcaption>The start functions set up the game grid, adds and removes CSS properties from elements and starts the game with obstacles, wood and water moving across the grid.</figcaption>
 
 ## Challenges 
 
