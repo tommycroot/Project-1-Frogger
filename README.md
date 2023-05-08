@@ -8,7 +8,7 @@ With three weeks of software engineering behind us, it was time for our first pr
 
 The game is deployed [here](https://tommycroot.github.io/Project-1-Frogger/ )
 
-![frogger](https://user-images.githubusercontent.com/80596226/236468964-642be0c8-4a32-46d1-aab5-cadb98da5071.png)
+<img src="https://user-images.githubusercontent.com/80596226/236468964-642be0c8-4a32-46d1-aab5-cadb98da5071.png" width="50%" height="50%">
 
 ## Getting Started/Code Installation
 
@@ -41,8 +41,8 @@ The first bit of planning I did was to create a wireframe using Excalidraw. I tr
 
 After this, I spent a while pseudocoding and trying to plan out as many variables, functions and events were going to be required to get a better picture of the project in my mind as well as having something to refer back to if I was lacking inspiration. This was helpful as it helped me develop a clearer outline of how to build the game and it got me imagining ways to solve some of the problems identified in the wireframe stage. For instance, it made sense to get the grid implemented and the frogger character moving first before trying to get the obstacles appearing and moving as I felt more comfortable with coding that section. It also made me realise in what order to do some tasks and how to break them down into smaller functions e.g. deciding to code the obstacles appearing first before tackling getting them moving or trying to attempt both in one function. 
 
-![2023-05-05 (1)](https://user-images.githubusercontent.com/80596226/236474725-0b3c9a6a-e3c7-4bff-b983-11b3e113777f.png)
-<figcaption>Exaclidraw plan</figcaption>
+![Exaclidraw plan](https://user-images.githubusercontent.com/80596226/236474725-0b3c9a6a-e3c7-4bff-b983-11b3e113777f.png) 
+<figcaption>This is a plan created in Exaclidraw.<figcaption>
 
 ## Build/Code Process 
 
@@ -50,8 +50,8 @@ After this, I spent a while pseudocoding and trying to plan out as many variable
 
 Firstly, I created a grid for the frogger character to move vertically and horizontally on and for obstacles to move across. I achieved this by using DOM manipulation to push cells into an empty div with a for loop. 
 
-![2023-05-05 (3)](https://user-images.githubusercontent.com/80596226/236476582-a2b27d4a-a3c8-4f0b-a5fa-1f3fd55ce789.png)
-<figcaption>Here the grid is created by targeting the div with the class name of ‘grid.’</figcaption>
+![Exaclidraw plan](https://user-images.githubusercontent.com/80596226/236476582-a2b27d4a-a3c8-4f0b-a5fa-1f3fd55ce789.png) 
+<figcaption>Here the grid is created by targeting the div with the class name of ‘grid.’<figcaption>
 
 ### Frogger (Bob) Movement
 
@@ -86,6 +86,9 @@ The handling of collisions was included in the function to move obstacles when i
 <figcaption>The function iterates through the ‘obstacleCells’ array and checks if the cells also contain the ‘bob’ class. If a collision is detected, the function calls the ‘removeBob’ function, decrements the ‘lives’ counter, plays an audio file to indicate the collision, updates the ‘livesDisplay’ element to show the current number of lives, sets the ‘currentPosition’ variable to the ‘startingPosition’, calls the ‘checkFinish’ function to check if the game has ended and finally calls the ‘addBob’ function to add the player sprite back to the starting position.</figcaption>
 
 ### Winning The Game
+
+<img src="https://user-images.githubusercontent.com/80596226/236890008-6e20edde-9744-479e-87a6-c8cb943aa9c5.png" width="50%" height="50%">
+
 I generated a random cell from 0-9 on the top line of the grid and stored it as a variable. Then I made an addFinish function that targeted the cell with the i of the random number and added the finish class to it. If SpongeBob can make it all the way to that cell, then the game is won. 
 
 I created a ‘checkFinish’ function to check if the cell currently containing the SpongeBob class also included the class of finish. If it does then the game is won. Within this same function, I also implemented an if statement to check if SpongeBob has any lives left. If he doesn’t, then unfortunately the game is lost.  There were also win game and end game functions largely made up of different CSS stylings to display different results of a game finish. These were later added and used within the checkFinish function.
@@ -108,7 +111,7 @@ Due to the fact I never implemented a proper reset game function and was using l
 
 I am happy to have completed the MVP and added additional enhancements within the timeframe. I am most pleased to have produced a solid game that functions properly. I think the game is quite nice to look at and it plays well too. Some of the logic used to create a couple of my functions has thankfully kept them relatively short and the fact that they have been reusable too is pleasing.
 
-![2023-05-05 (12)](https://user-images.githubusercontent.com/80596226/236480543-b9c13eb8-5e19-4b1d-9253-2edbe19374cd.png)
+<img src="https://user-images.githubusercontent.com/80596226/236480543-b9c13eb8-5e19-4b1d-9253-2edbe19374cd.png" width="50%" height="50%">
 
 ## Key Learnings/Takeaways
 
